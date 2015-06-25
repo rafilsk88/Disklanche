@@ -73,13 +73,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 		/*
 		 * Verifica a existencia de um Objeto produto.
 		 */
-		if (produto != null) 
-		{
-			jtNome.setText(produto.getTitulo());
-			jtValor.setText(produto.getValor().toString());
-			comboBoxCategoria.setSelectedItem(produto.getCategoria()
-					.getDescricao());
-		}
 		
 		
 		DefaultComboBoxModel<Categoria> modelCategoria = new DefaultComboBoxModel<Categoria>();
@@ -111,23 +104,20 @@ public class CadastroProdutoUI extends JInternalFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				/*
-				 * Verifica se o Objeto produto está nulo.
-				 */
 				if (produto != null) 
 				{
 					/*
 					 * Se a verificação for verdadeira, Inseri os valores do Objeto selecionado.
 					 */
 					produto.setTitulo(jtNome.getText());
-					produto.setValor(Double.parseDouble(jtValor.getText()));
+					produto.setValor( Double.parseDouble(jtValor.getText()));
 					produto.setCategoria((Categoria) comboBoxCategoria.getSelectedItem());
 					produto.setStatus(produto.getStatus().ATIVO);
 
 					ProdutoController proc = new ProdutoController();
 					try 
 					{
-						proc.salvarProduto(produto, jtNome);
+						proc.salvarProduto(produto);
 						JOptionPane.showMessageDialog(null," Editado com sucesso. ");
 						dispose();
 					} 
@@ -135,6 +125,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 					{
 						JOptionPane.showMessageDialog(null,"Erro ao editar o produto" + e.getMessage());
 					}
+					
 				} 
 				else 
 				{
@@ -149,17 +140,15 @@ public class CadastroProdutoUI extends JInternalFrame {
 					produto.setValor(Double.parseDouble(jtValor.getText()));
 					
 					ProdutoController produtoController = new ProdutoController();
-					
-					
 					try
 					{
-							produtoController.salvarProduto(produto, jtNome);
-							JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso.");
-							dispose();
+						produtoController.salvarProduto(produto);
+						JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso.");
+						dispose();
 					}
 					catch(Exception e)
 					{
-						JOptionPane.showMessageDialog(null,"Erro ao salvar o produto! " + e.getMessage());
+						JOptionPane.showMessageDialog(null,"Erro ao salvar o produto! \n" + e.getMessage());
 					}
 				}	
 			}
@@ -222,6 +211,14 @@ public class CadastroProdutoUI extends JInternalFrame {
 					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
-
+		/*
+		 * Verifica se o Objeto produto está nulo.
+		 */
+		if (produto != null) 
+		{
+			jtNome.setText(produto.getTitulo());
+			jtValor.setText(produto.getValor().toString());
+			comboBoxCategoria.setSelectedItem(produto.getCategoria().getDescricao());
+		}
 	}
 }

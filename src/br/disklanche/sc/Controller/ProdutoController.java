@@ -15,10 +15,11 @@ import br.disklanche.sc.View.CadastroCategoriaUI;
 
 public class ProdutoController {
 
-	public void salvarProduto(Produto produto, JTextField jtNome) throws NullPointerException,Exception 
+	public void salvarProduto(Produto produto) throws Exception 
 	{
+		JOptionPane.showMessageDialog(null, "ID = "+produto.getId() + "\nNome = "+produto.getTitulo() + "\nValor = "+produto.getValor());
+		
 		validaDados(produto);
-		verificaExistenciaProduto(jtNome);
 		ProdutoDAO dao = new ProdutoDAO();
 		if (produto.getId() != 0) 
 		{
@@ -29,22 +30,14 @@ public class ProdutoController {
 			dao.salvarProduto(produto);
 		}
 	}
-	
-	public void verificaExistenciaProduto(JTextField jtNome) throws NullPointerException, ClienteException
+		
+	public void validaExistenciaProduto(Produto produto, String titulo) throws ClienteException
 	{
 		for (int i = 0; i <= listarProduto().size(); i++)
 		{
-			if (listarProduto().get(i).getTitulo().equalsIgnoreCase(jtNome.toString())) 
+			if (listarProduto().get(i).getTitulo().equalsIgnoreCase(titulo)) 
 				throw new ClienteException("Produto já CADASTRADO!");
 		}
-		
-	}
-
-	public void excluirProduto(Produto produto) throws SQLException 
-	{
-		ProdutoDAO dao = new ProdutoDAO();
-		dao.excluirProduto(produto);
-		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.");
 	}
 
 	public void validaDados(Produto produto) throws CampoObrigatorioException, NullPointerException, NumberFormatException,
@@ -55,6 +48,13 @@ public class ProdutoController {
 			throw new CampoObrigatorioException("Valor");
 		if (produto.getCategoria() == null)
 			throw new CampoObrigatorioException("Categoria");
+	}
+	
+	public void excluirProduto(Produto produto) throws SQLException 
+	{
+		ProdutoDAO dao = new ProdutoDAO();
+		dao.excluirProduto(produto);
+		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.");
 	}
 			
 	public ArrayList<Produto> listarProduto() {

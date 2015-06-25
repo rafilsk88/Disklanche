@@ -5,7 +5,7 @@ public class CampoObrigatorioException extends Exception{
 	
 	
 	public CampoObrigatorioException(String campo){
-		this.message="Campo "+campo+" obrigatório!";
+		this.message="Campo "+ campo +" obrigatório!";
 	}
 	
 	public String getMessage(){
