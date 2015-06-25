@@ -24,27 +24,22 @@ import javax.swing.table.TableModel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import br.jotas.sc.controller.AtualizaEstoqueController;
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.controller.RealizarPedidoController;
-import br.jotas.sc.dao.EstoqueDAO;
-import br.jotas.sc.dao.PedidoDAO;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.ItensDoPedido;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.model.RealizarPedido;
-import br.jotas.sc.util.AtualizaEstoqueTableModel;
-import br.jotas.sc.util.RealizaPedidoTableModel;
-
 import javax.swing.JSpinner;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.SpinnerNumberModel;
+
+import br.disklanche.sc.Controller.AtualizaEstoqueController;
+import br.disklanche.sc.Controller.ClienteController;
+import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Controller.RealizarPedidoController;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Model.ItensDoPedido;
+import br.disklanche.sc.Model.Produto;
+import br.disklanche.sc.Model.RealizarPedido;
+import br.disklanche.sc.Util.RealizaPedidoTableModel;
 
 
 public class RealizarPedidoUI extends JInternalFrame {

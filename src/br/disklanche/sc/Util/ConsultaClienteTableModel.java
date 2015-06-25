@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.jotas.sc.controller.RealizarPedidoController;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.RealizarPedido;
+import br.disklanche.sc.Controller.RealizarPedidoController;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Model.RealizarPedido;
 
 public class ConsultaClienteTableModel extends AbstractTableModel {
 	

@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.Necessidade;
+import br.disklanche.sc.Model.Estoque;
+import br.disklanche.sc.Model.Necessidade;
 
 public class ConsultaNecessidadeTableModel extends AbstractTableModel  {
 

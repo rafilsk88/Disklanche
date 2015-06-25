@@ -4,12 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import br.jotas.sc.dao.PedidoDAO;
-import br.jotas.sc.exception.CampoObrigatorioException;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.ItensDoPedido;
-import br.jotas.sc.model.RealizarPedido;
-import br.jotas.sc.util.DataUtil;
+import br.disklanche.sc.DAO.PedidoDAO;
+import br.disklanche.sc.Exception.CampoObrigatorioException;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Model.ItensDoPedido;
+import br.disklanche.sc.Model.RealizarPedido;
+import br.disklanche.sc.Util.DataUtil;
 
 public class RealizarPedidoController {
 
@@ -29,12 +29,6 @@ public class RealizarPedidoController {
 		return dao.obterPedido(id);
 	}
 
-	/*public int quantidadePedidosPorPeriodo(int idPedido, Date periodo) {
-		PedidoDAO dao = new PedidoDAO();
-		Date dataInicial = DataUtil.criarDataNoPrimeiroDiaMesNoPrimeiroSegundo(periodo);
-		Date dataFinal = DataUtil.criarDataNoUltimoDiaMesNoUltimoSegundo(periodo);
-		return dao.quantidadePedidosPorPeriodo(idPedido, dataInicial, dataFinal);
-	}*/
 	
 	public double valorPorCliente(int id, Date dataPeriodo){
 		PedidoDAO dao = new PedidoDAO();

@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import br.jotas.sc.dao.ProdutoDAO;
-import br.jotas.sc.exception.CampoObrigatorioException;
-import br.jotas.sc.model.Produto;
+import br.disklanche.sc.DAO.ProdutoDAO;
+import br.disklanche.sc.Exception.CampoObrigatorioException;
+import br.disklanche.sc.Model.Produto;
 
 public class ProdutoController {
 

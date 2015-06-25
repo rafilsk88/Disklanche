@@ -28,14 +28,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 
-import br.jotas.sc.controller.AtualizaEstoqueController;
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.dao.EstoqueDAO;
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.util.AtualizaEstoqueTableModel;
-import br.jotas.sc.util.ClienteTableModel;
+import br.disklanche.sc.Controller.AtualizaEstoqueController;
+import br.disklanche.sc.DAO.EstoqueDAO;
+import br.disklanche.sc.Model.Estoque;
+import br.disklanche.sc.Util.AtualizaEstoqueTableModel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

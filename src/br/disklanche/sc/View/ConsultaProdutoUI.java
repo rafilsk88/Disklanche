@@ -22,12 +22,9 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.dao.EstoqueDAO;
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.util.AtualizaEstoqueTableModel;
-import br.jotas.sc.util.ConsultaProdutoTableModel;
+import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Model.Produto;
+import br.disklanche.sc.Util.ConsultaProdutoTableModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

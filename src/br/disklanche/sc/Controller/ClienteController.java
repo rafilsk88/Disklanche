@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import br.jotas.sc.dao.ClienteDAO;
-import br.jotas.sc.exception.CampoObrigatorioException;
-import br.jotas.sc.model.Cliente;
+import br.disklanche.sc.DAO.ClienteDAO;
+import br.disklanche.sc.Exception.CampoObrigatorioException;
+import br.disklanche.sc.Model.Cliente;
 
 public class ClienteController {
 

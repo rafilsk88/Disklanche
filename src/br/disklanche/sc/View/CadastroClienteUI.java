@@ -11,9 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.util.ClienteTableModel;
+import br.disklanche.sc.Controller.ClienteController;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Util.ClienteTableModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

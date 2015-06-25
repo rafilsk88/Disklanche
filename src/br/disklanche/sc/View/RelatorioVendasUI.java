@@ -3,23 +3,20 @@
 	import java.awt.EventQueue;
 
 	import javax.swing.JInternalFrame;
-	import javax.swing.GroupLayout;
-	import javax.swing.JTable;
-	import javax.swing.GroupLayout.Alignment;
-	import javax.swing.JLabel;
-	import javax.swing.LayoutStyle.ComponentPlacement;
-	import javax.swing.JScrollPane;
-	import javax.swing.JButton;
+import javax.swing.GroupLayout;
+import javax.swing.JTable;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
 
-	import br.jotas.sc.controller.ClienteController;
-	import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.controller.RealizarPedidoController;
-import br.jotas.sc.controller.CategoriaController;
-	import br.jotas.sc.util.RelatorioVendasTableModel;
+import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Util.RelatorioVendasTableModel;
 
 	import java.awt.event.ActionListener;
-	import java.awt.event.ActionEvent;
-	import java.util.Date;
+import java.awt.event.ActionEvent;
+import java.util.Date;
 
 	@SuppressWarnings("serial")
 	public class RelatorioVendasUI extends JInternalFrame {

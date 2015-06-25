@@ -16,13 +16,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
 
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.util.ClienteTableModel;
-import br.jotas.sc.util.ConsultaClienteTableModel;
-import br.jotas.sc.util.ConsultaProdutoTableModel;
+import br.disklanche.sc.Controller.ClienteController;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Util.ClienteTableModel;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;

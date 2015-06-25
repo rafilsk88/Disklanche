@@ -3,13 +3,10 @@
 	import java.util.ArrayList;
 import java.util.List;
 
-	import javax.swing.table.AbstractTableModel;
+import javax.swing.table.AbstractTableModel;
 
-	import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.ItensDoPedido;
-import br.jotas.sc.model.Necessidade;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.view.RealizarPedidoUI;
+import br.disklanche.sc.Model.Necessidade;
+
 
 	public class NecessidadeDiariaTableModel extends AbstractTableModel{
 		/**

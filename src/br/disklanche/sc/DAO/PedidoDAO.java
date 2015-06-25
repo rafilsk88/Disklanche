@@ -12,14 +12,13 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.jdbc.ConnectionFactory;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.ItensDoPedido;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.model.RealizarPedido;
+import br.disklanche.sc.Controller.ClienteController;
+import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Jdbc.ConnectionFactory;
+import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Model.Estoque;
+import br.disklanche.sc.Model.ItensDoPedido;
+import br.disklanche.sc.Model.RealizarPedido;
 
 public class PedidoDAO {
 

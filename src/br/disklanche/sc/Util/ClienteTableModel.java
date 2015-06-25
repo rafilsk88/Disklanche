@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.jotas.sc.model.Cliente;
+import br.disklanche.sc.Model.Cliente;
 
 public class ClienteTableModel extends AbstractTableModel {
 		

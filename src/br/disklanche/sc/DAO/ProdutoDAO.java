@@ -9,13 +9,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.jdbc.ConnectionFactory;
-import br.jotas.sc.model.Categoria;
-import br.jotas.sc.model.Cliente;
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.model.StatusProdutoEnum;
+import br.disklanche.sc.Jdbc.ConnectionFactory;
+import br.disklanche.sc.Model.Categoria;
+import br.disklanche.sc.Model.Estoque;
+import br.disklanche.sc.Model.Produto;
 
 public class ProdutoDAO {
 

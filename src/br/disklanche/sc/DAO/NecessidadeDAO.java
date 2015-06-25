@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.jotas.sc.jdbc.ConnectionFactory;
-import br.jotas.sc.model.Necessidade;
-import br.jotas.sc.model.Produto;
+import br.disklanche.sc.Jdbc.ConnectionFactory;
+import br.disklanche.sc.Model.Necessidade;
 
 public class NecessidadeDAO {
 	

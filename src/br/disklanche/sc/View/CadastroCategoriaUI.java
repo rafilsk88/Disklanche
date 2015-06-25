@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import br.jotas.sc.controller.CategoriaController;
-import br.jotas.sc.model.Categoria;
+import br.disklanche.sc.Controller.CategoriaController;
+import br.disklanche.sc.Model.Categoria;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

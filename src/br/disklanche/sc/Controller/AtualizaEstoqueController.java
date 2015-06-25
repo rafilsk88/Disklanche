@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import br.disklanche.sc.DAO.EstoqueDAO;
+import br.disklanche.sc.Model.Estoque;
+import br.disklanche.sc.Model.ItensDoPedido;
+
 
 
 public class AtualizaEstoqueController {

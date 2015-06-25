@@ -2,9 +2,9 @@ package br.disklanche.sc.Controller;
 
 import java.sql.SQLException;
 
-import br.jotas.sc.dao.NecessidadeDAO;
-import br.jotas.sc.model.Necessidade;
-import br.jotas.sc.model.Produto;
+import br.disklanche.sc.DAO.NecessidadeDAO;
+import br.disklanche.sc.Model.Necessidade;
+
 
 public class NecessidadesController {
 

@@ -5,10 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.jotas.sc.model.Estoque;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.model.RealizarPedido;
-
+import br.disklanche.sc.Model.Estoque;
 
 //Transformar em CONSULTAESTOQUE
 public class AtualizaEstoqueTableModel extends AbstractTableModel {

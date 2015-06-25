@@ -13,14 +13,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.jotas.sc.controller.CategoriaController;
-import br.jotas.sc.controller.ClienteController;
-import br.jotas.sc.controller.ProdutoController;
-import br.jotas.sc.model.Categoria;
-import br.jotas.sc.model.Produto;
-import br.jotas.sc.model.StatusProdutoEnum;
-import br.jotas.sc.util.ClienteTableModel;
-import br.jotas.sc.util.ConsultaProdutoTableModel;
+
+
+
+
+
+
+import br.disklanche.sc.Controller.CategoriaController;
+import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Model.Categoria;
+import br.disklanche.sc.Model.Produto;
+import br.disklanche.sc.Util.ConsultaProdutoTableModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

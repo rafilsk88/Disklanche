@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import br.jotas.sc.jdbc.ConnectionFactory;
-import br.jotas.sc.model.Cliente;
+import br.disklanche.sc.Jdbc.ConnectionFactory;
+import br.disklanche.sc.Model.Cliente;
 
 public class ClienteDAO {
 
