@@ -5,30 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import br.disklanche.sc.DAO.ProdutoDAO;
 import br.disklanche.sc.Exception.CampoObrigatorioException;
 import br.disklanche.sc.Model.Produto;
+import br.disklanche.sc.View.CadastroCategoriaUI;
 
 public class ProdutoController {
 
-	public void salvarProduto(Produto produto) throws NullPointerException,
-			Exception {
+	public void salvarProduto(Produto produto) throws NullPointerException,Exception 
+	{
 		validaDados(produto);
 		ProdutoDAO dao = new ProdutoDAO();
-		if (produto.getId() != 0) {
+		if (produto.getId() != 0) 
+		{
 			dao.editarProduto(produto);
-		} else {
+		} 
+		else 
+		{
 			dao.salvarProduto(produto);
 		}
 	}
 
-	public Produto obterProduto(int id) {
-		ProdutoDAO dao = new ProdutoDAO();
-		return dao.obterProduto(id);
-	}
-
-	public void excluirProduto(Produto produto) throws SQLException {
+	public void excluirProduto(Produto produto) throws SQLException 
+	{
 		ProdutoDAO dao = new ProdutoDAO();
 		dao.excluirProduto(produto);
 		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.");
@@ -43,7 +44,7 @@ public class ProdutoController {
 		if (produto.getCategoria() == null)
 			throw new CampoObrigatorioException("Categoria");
 	}
-	
+			
 	public ArrayList<Produto> listarProduto() {
 		ProdutoDAO dao = new ProdutoDAO();
 		return dao.listarProduto();
@@ -59,5 +60,10 @@ public class ProdutoController {
 			return dao.procurarProdutoPorNome(s,c);
 	}
 
+	public Produto obterProduto(int id) 
+	{
+		ProdutoDAO dao = new ProdutoDAO();
+		return dao.obterProduto(id);
+	}
 	
 }

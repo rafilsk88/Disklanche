@@ -30,25 +30,29 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class CadastroProdutoUI extends JInternalFrame {
+	private boolean falso ;
 	private JTextField jtNome;
 	private JTextField jtValor;
 	private Categoria categoria;
-
 	private JComboBox comboBoxCategoria;
-
 	private ArrayList<Categoria> listaCategorias = new CategoriaController()
 			.listaCategorias();
-
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					CadastroProdutoUI frame = new CadastroProdutoUI(null);
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -58,104 +62,116 @@ public class CadastroProdutoUI extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroProdutoUI(final Produto produto) {
+	public CadastroProdutoUI(final Produto produto) 
+	{
 		setTitle("Cadastro de Produtos");
 		setClosable(true);
 		setMaximizable(true);
 		setIconifiable(true);
 		setBounds(100, 100, 408, 227);
 
-		JLabel lblNome = new JLabel("Nome :");
-		jtValor = new JTextField();
-
-		jtNome = new JTextField();
-		jtNome.setColumns(10);
-
-		JLabel lblCategoria = new JLabel("Categoria :");
-
-		DefaultComboBoxModel<Categoria> modelCategoria = new DefaultComboBoxModel<Categoria>();
-		for (Categoria categoria : listaCategorias) {
-			modelCategoria.addElement(categoria);
-		}
-		comboBoxCategoria = new JComboBox();
-		comboBoxCategoria.setModel(modelCategoria);
-
-		if (produto != null) {
+		/*
+		 * Verifica a existencia de um Objeto produto.
+		 */
+		if (produto != null) 
+		{
 			jtNome.setText(produto.getTitulo());
 			jtValor.setText(produto.getValor().toString());
 			comboBoxCategoria.setSelectedItem(produto.getCategoria()
 					.getDescricao());
-
 		}
+		
+		
+		DefaultComboBoxModel<Categoria> modelCategoria = new DefaultComboBoxModel<Categoria>();
+		/*
+		 * Lista as categorias existentes no banco e insere no combobox
+		 */
+		for (Categoria categoria : listaCategorias) 
+		{
+			modelCategoria.addElement(categoria);
+		}
+		
+		JLabel lblNome = new JLabel("Nome :");
+		JLabel lblCategoria = new JLabel("Categoria :");
+		JLabel lblValor = new JLabel("Valor :");
+		
+		jtNome = new JTextField();
+		jtNome.setColumns(10);
 
+		comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setModel(modelCategoria);
+		
+		jtValor = new JTextField();
+
+		/*
+		 * Criando o botão Salvar e adicionando uma ação. 
+		 */
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (produto != null) {
-
-					// Editar
-
+		btnSalvar.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				/*
+				 * Verifica se o Objeto produto está nulo.
+				 */
+				if (produto != null) 
+				{
+					/*
+					 * Se a verificação for verdadeira, Inseri os valores do Objeto selecionado.
+					 */
 					produto.setTitulo(jtNome.getText());
 					produto.setValor(Double.parseDouble(jtValor.getText()));
-					produto.setCategoria((Categoria) comboBoxCategoria
-							.getSelectedItem());
+					produto.setCategoria((Categoria) comboBoxCategoria.getSelectedItem());
 					produto.setStatus(produto.getStatus().ATIVO);
 
 					ProdutoController proc = new ProdutoController();
-
-					try {
+					try 
+					{
 						proc.salvarProduto(produto);
-						JOptionPane.showMessageDialog(null,
-								" Editado com sucesso. ");
+						JOptionPane.showMessageDialog(null," Editado com sucesso. ");
 						dispose();
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage());
+					} 
+					catch (Exception e) 
+					{
+						JOptionPane.showMessageDialog(null,"Erro ao editar o produto" + e.getMessage());
 					}
-					ConsultaProdutoUI.obterInstancia().table
-							.setModel(new ConsultaProdutoTableModel(
-									new ProdutoController().listarProduto()));
-				} else {
-
-					// Salvar
-
+				} 
+				else 
+				{
+					/*
+					 * Se a verificação for falsa ele cria um novo Objeto produto.
+					 */
 					Produto produto = new Produto();
-					ProdutoController produtoController = new ProdutoController();
-
+					
 					produto.setTitulo(jtNome.getText());
-					try {
-						produto.setValor(Double.parseDouble(jtValor.getText()));
-					} catch (NumberFormatException e) {
-						e.getMessage();
-					}
-					produto.setCategoria((Categoria) comboBoxCategoria
-							.getSelectedItem());
+					produto.setCategoria((Categoria) comboBoxCategoria.getSelectedItem());
 					produto.setStatus(produto.getStatus().ATIVO);
-
-					for (int i = 0; i < produtoController
-							.listarProduto().size(); i++) {
-						if (produtoController.listarProduto().get(i)
-								.getTitulo().equalsIgnoreCase(jtNome.getText())) {
-							JOptionPane.showMessageDialog(null,
-									"Produto já cadastrado!");
-							break;
-						} else {
-							try {
-								produtoController.salvarProduto(produto);
-								JOptionPane.showMessageDialog(null, "Produto: "
-										+ produto.getTitulo()
-										+ " cadastrado com sucesso");
-								dispose();
-								break;
-							} catch (Exception e1) {
-								JOptionPane.showMessageDialog(null,
-										e1.getMessage());
-								break;
+					produto.setValor(Double.parseDouble(jtValor.getText()));
+					
+					ProdutoController produtoController = new ProdutoController();
+					
+					falso = true;
+					try
+					{
+						for (int i = 0; i <= produtoController.listarProduto().size(); i++)
+						{
+							if (produtoController.listarProduto().get(i).getTitulo().equalsIgnoreCase(jtNome.getText())) 
+							{
+								JOptionPane.showMessageDialog(null,"Produto já CADASTRADO!");
+								falso = false;
 							}
-
 						}
+						if(falso != false)
+						{
+							produtoController.salvarProduto(produto);
+							JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso.");
+							dispose();
+						}
+					}catch(Exception e)
+					{
+						JOptionPane.showMessageDialog(null,"Erro!");
 					}
-				}
-
+				}	
 			}
 		});
 
@@ -166,7 +182,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 			}
 		});
 
-		JLabel lblValor = new JLabel("Valor :");
 
 		jtValor.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
