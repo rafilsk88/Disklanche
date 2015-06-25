@@ -127,7 +127,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 					ProdutoController proc = new ProdutoController();
 					try 
 					{
-						proc.salvarProduto(produto);
+						proc.salvarProduto(produto, jtNome);
 						JOptionPane.showMessageDialog(null," Editado com sucesso. ");
 						dispose();
 					} 
@@ -150,26 +150,16 @@ public class CadastroProdutoUI extends JInternalFrame {
 					
 					ProdutoController produtoController = new ProdutoController();
 					
-					falso = true;
+					
 					try
 					{
-						for (int i = 0; i <= produtoController.listarProduto().size(); i++)
-						{
-							if (produtoController.listarProduto().get(i).getTitulo().equalsIgnoreCase(jtNome.getText())) 
-							{
-								JOptionPane.showMessageDialog(null,"Produto já CADASTRADO!");
-								falso = false;
-							}
-						}
-						if(falso != false)
-						{
-							produtoController.salvarProduto(produto);
+							produtoController.salvarProduto(produto, jtNome);
 							JOptionPane.showMessageDialog(null,"Produto cadastrado com sucesso.");
 							dispose();
-						}
-					}catch(Exception e)
+					}
+					catch(Exception e)
 					{
-						JOptionPane.showMessageDialog(null,"Erro!");
+						JOptionPane.showMessageDialog(null,"Erro ao salvar o produto! " + e.getMessage());
 					}
 				}	
 			}

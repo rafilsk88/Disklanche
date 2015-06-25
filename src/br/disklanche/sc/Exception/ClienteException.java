@@ -4,17 +4,14 @@ public class ClienteException extends Exception{
 
 	private String mensagem;
 	
-	public ClienteException(String mensagem){
-		this.mensagem = mensagem;
+	public ClienteException(String String){
+		this.mensagem = String;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage(){
+		return this.getMessage();
 	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
+	
 	
 	
 }

@@ -9,14 +9,16 @@ import javax.swing.JTextField;
 
 import br.disklanche.sc.DAO.ProdutoDAO;
 import br.disklanche.sc.Exception.CampoObrigatorioException;
+import br.disklanche.sc.Exception.ClienteException;
 import br.disklanche.sc.Model.Produto;
 import br.disklanche.sc.View.CadastroCategoriaUI;
 
 public class ProdutoController {
 
-	public void salvarProduto(Produto produto) throws NullPointerException,Exception 
+	public void salvarProduto(Produto produto, JTextField jtNome) throws NullPointerException,Exception 
 	{
 		validaDados(produto);
+		verificaExistenciaProduto(jtNome);
 		ProdutoDAO dao = new ProdutoDAO();
 		if (produto.getId() != 0) 
 		{
@@ -26,6 +28,16 @@ public class ProdutoController {
 		{
 			dao.salvarProduto(produto);
 		}
+	}
+	
+	public void verificaExistenciaProduto(JTextField jtNome) throws NullPointerException, ClienteException
+	{
+		for (int i = 0; i <= listarProduto().size(); i++)
+		{
+			if (listarProduto().get(i).getTitulo().equalsIgnoreCase(jtNome.toString())) 
+				throw new ClienteException("Produto já CADASTRADO!");
+		}
+		
 	}
 
 	public void excluirProduto(Produto produto) throws SQLException 
