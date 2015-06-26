@@ -77,8 +77,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 		/*
 		 * Verifica a existencia de um Objeto produto.
 		 */
-		
-		
 		DefaultComboBoxModel<Categoria> modelCategoria = new DefaultComboBoxModel<Categoria>();
 		/*
 		 * Lista as categorias existentes no banco e insere no combobox
@@ -98,7 +96,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 
 		comboBoxCategoria = new JComboBox();
 		comboBoxCategoria.setModel(modelCategoria);
-		
 
 		/*
 		 * Criando o botão Salvar e adicionando uma ação. 
@@ -129,7 +126,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 					{
 						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
-					
 				} 
 				else 
 				{
@@ -176,7 +172,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 				dispose();
 			}
 		});
-
 
 		jtValor.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

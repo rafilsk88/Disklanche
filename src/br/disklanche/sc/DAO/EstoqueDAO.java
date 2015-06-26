@@ -31,30 +31,42 @@ public class EstoqueDAO {
 		return instance;
 	}
 
-	public ArrayList<Estoque> listarEstoque() {
-		String query = "Select * from estoque";
-		try {
-			Statement stm = con.createStatement();
+	public ArrayList<Estoque> listarEstoque(int id) 
+	{
+		String query = "Select * from estoque  where produto = ?";
+		try 
+		{
+			PreparedStatement stm = con.prepareStatement(query);
+			stm.setInt(1, id);
 			ResultSet res = stm.executeQuery(query);
 			ArrayList<Estoque> listarEstoque = new ArrayList<Estoque>();
-			while (res.next()) {
+			while (res.next()) 
+			{
 				Estoque estoque = new Estoque();
-				estoque.getProduto().setTitulo(res.getString("titulo"));
-				estoque.getProduto().setValor(res.getDouble("valor"));
+				Produto produto = new Produto();
+				
+				produto.setId(res.getInt("produto"));
+				
+				estoque.setProduto(produto);
 				estoque.setEstoqueAtual(res.getInt("estoqueAtual"));
-				estoque.getProduto().getCategoria()
-						.setDescricao(res.getString("descricao"));
 				listarEstoque.add(estoque);
 			}
 			return listarEstoque;
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			System.out.println("[ Erro ao tentar listar produtos ] : "
 					+ e.getMessage());
 			return null;
-		} finally {
-			try {
+		} 
+		finally 
+		{
+			try 
+			{
 				con.close();
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) 
+			{
 				e.printStackTrace();
 			}
 		}

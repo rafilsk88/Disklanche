@@ -46,7 +46,6 @@ public class ProdutoController {
 		
 	public void validaExistenciaProduto(Produto produto) throws ClienteException, NullPointerException, NumberFormatException
 	{
-		JOptionPane.showMessageDialog(null, produto.getTitulo());
 		for (int i = 0; i < listarProduto().size(); i++)
 		{
 			if (listarProduto().get(i).getTitulo().equalsIgnoreCase(produto.getTitulo())) 

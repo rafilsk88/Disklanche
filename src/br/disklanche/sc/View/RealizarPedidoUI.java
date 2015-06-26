@@ -35,7 +35,10 @@ import br.disklanche.sc.Controller.AtualizaEstoqueController;
 import br.disklanche.sc.Controller.ClienteController;
 import br.disklanche.sc.Controller.ProdutoController;
 import br.disklanche.sc.Controller.RealizarPedidoController;
+import br.disklanche.sc.DAO.EstoqueDAO;
+import br.disklanche.sc.Exception.ClienteException;
 import br.disklanche.sc.Model.Cliente;
+import br.disklanche.sc.Model.Estoque;
 import br.disklanche.sc.Model.ItensDoPedido;
 import br.disklanche.sc.Model.Produto;
 import br.disklanche.sc.Model.RealizarPedido;
@@ -47,27 +50,29 @@ public class RealizarPedidoUI extends JInternalFrame {
 	private JTextField jtTotal;
 	private double valorTotal = 0;
 	private ItensDoPedido idp;
-
 	private JSpinner spinner_Quantidade;
 	private JComboBox comboBox_Clientes, comboBox_Produtos;
-
 	private RealizaPedidoTableModel rpt = new RealizaPedidoTableModel();
-	private ArrayList<Cliente> listarClientes = new ClienteController()
-			.listarClientes();
-	private ArrayList<Produto> listarProdutos = new ProdutoController()
-			.listarProduto();
-
+	private ArrayList<Cliente> listarClientes = new ClienteController().listarClientes();
+	private ArrayList<Produto> listarProdutos = new ProdutoController().listarProduto();
 	private ArrayList<ItensDoPedido> listaItens = new ArrayList<ItensDoPedido>();
+	private ArrayList<Estoque> ListarEstoque;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					RealizarPedidoUI frame = new RealizarPedidoUI();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -77,73 +82,102 @@ public class RealizarPedidoUI extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RealizarPedidoUI() {
+	public RealizarPedidoUI() 
+	{
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Realizar Pedido");
 		setBounds(100, 100, 662, 500);
 
-		JLabel lblCliente = new JLabel("Cliente :");
+		final ArrayList<ItensDoPedido> itensPedido = new ArrayList<ItensDoPedido>();
 
 		/*
 		 * Setando os valores dos Clientes no comboBox
 		 */
-
 		DefaultComboBoxModel<Cliente> modelListarCliente = new DefaultComboBoxModel<Cliente>();
 		for (Cliente cliente : listarClientes) {
 			modelListarCliente.addElement(cliente);
 		}
-		comboBox_Clientes = new JComboBox();
-		comboBox_Clientes.setModel(modelListarCliente);
-
-		JLabel lblProduto = new JLabel("Produto  :");
-
-		final ArrayList<ItensDoPedido> itensPedido = new ArrayList<ItensDoPedido>();
-
+		
 		/*
 		 * Setando os valores dos Produtos no comboBox
 		 */
-
+		
 		DefaultComboBoxModel<Produto> modelListarProduto = new DefaultComboBoxModel<Produto>();
 		for (Produto produto : listarProdutos) {
 			modelListarProduto.addElement(produto);
 		}
+		
+		JLabel lblCliente = new JLabel("Cliente :");
+		JLabel lblProduto = new JLabel("Produto  :");
+		
+		comboBox_Clientes = new JComboBox();
+		comboBox_Clientes.setModel(modelListarCliente);
+
 		comboBox_Produtos = new JComboBox();
 		comboBox_Produtos.setModel(modelListarProduto);
-
+		
 		/*
-		 * Incompleto ainda tem que fazer correções na tabela
+		 * Boão Inserir um Objeto produto numa listaItens para armazenar no pedido.
 		 */
-
 		JButton btnInserir = new JButton("Inserir");
-		btnInserir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				boolean encontrado= false;
+		btnInserir.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				Produto produto = (Produto) comboBox_Produtos.getSelectedItem();
 				idp = new ItensDoPedido(produto, (Integer) spinner_Quantidade.getValue(), (produto.getValor() * (Integer) spinner_Quantidade.getValue()));
-				if(!listaItens.isEmpty()){
-					for (int i=0; i<listaItens.size(); i++) {
-						if (listaItens.get(i).getProduto().getTitulo().equals(idp.getProduto().getTitulo())){
-							listaItens.get(i).setQuantidade(listaItens.get(i).getQuantidade()+(Integer) spinner_Quantidade.getValue());
-							listaItens.get(i).setValorUnitario(listaItens.get(i).getProduto().getValor()*listaItens.get(i).getQuantidade());
-							encontrado = true;
-							break;
-						}else{
-							encontrado = false;
+				boolean encontrado= false;
+				
+				/*
+				 * Verificação do inserir na lista de pedido quantidade "0".
+				 */
+				if ((Integer)spinner_Quantidade.getValue() == 0) 
+				{
+					JOptionPane.showMessageDialog(null, "Favor informar a quantidade do produto !");
+					
+				}
+				
+				
+								
+				try
+				{
+					if(!listaItens.isEmpty())
+					{
+						for (int i=0; i<listaItens.size(); i++) 
+						{
+							if (listaItens.get(i).getProduto().getTitulo().equals(idp.getProduto().getTitulo()))
+							{
+								listaItens.get(i).setQuantidade(listaItens.get(i).getQuantidade()+(Integer) spinner_Quantidade.getValue());
+								listaItens.get(i).setValorUnitario(listaItens.get(i).getProduto().getValor()*listaItens.get(i).getQuantidade());
+								encontrado = true;
+								break;
+							}
+							else
+							{
+								encontrado = false;
+							}
+						}
+						if (!encontrado)
+						{
+							listaItens.add(idp);
 						}
 					}
-					if (!encontrado){
+					else
+					{
 						listaItens.add(idp);
 					}
-				}else{
-					listaItens.add(idp);
+					table.setModel(new RealizaPedidoTableModel(listaItens));
+							
+					valorTotal += produto.getValor() * (Integer) spinner_Quantidade.getValue();
+					jtTotal.setText(Double.toString(valorTotal));
+					spinner_Quantidade.setValue(0);
 				}
-				table.setModel(new RealizaPedidoTableModel(listaItens));
-				
-				valorTotal += produto.getValor() * (Integer) spinner_Quantidade.getValue();
-				jtTotal.setText(Double.toString(valorTotal));
-				spinner_Quantidade.setValue(0);
+				catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
 			}
 		});
 
@@ -179,17 +213,19 @@ public class RealizarPedidoUI extends JInternalFrame {
 				}
 			}
 		});
+		
+		spinner_Quantidade = new JSpinner();
+		spinner_Quantidade.setModel(new SpinnerNumberModel(new Integer(0),new Integer(0), null, new Integer(1)));
 
 		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnNewButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				dispose();
 			}
 		});
 
-		spinner_Quantidade = new JSpinner();
-		spinner_Quantidade.setModel(new SpinnerNumberModel(new Integer(0),
-				new Integer(0), null, new Integer(1)));
 
 		JLabel lblQuantidade = new JLabel("Quantidade :");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
