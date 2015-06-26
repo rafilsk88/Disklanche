@@ -133,52 +133,60 @@ public class RealizarPedidoUI extends JInternalFrame {
 				/*
 				 * Verificação do inserir na lista de pedido quantidade "0".
 				 */
-				if ((Integer)spinner_Quantidade.getValue() == 0) 
-				{
-					JOptionPane.showMessageDialog(null, "Favor informar a quantidade do produto !");
-					
-				}
 				
 				
 								
 				try
 				{
-					if(!listaItens.isEmpty())
+					/*
+					 * Verifica se o campo quantidade esta nulo.
+					 */
+					if ((Integer)spinner_Quantidade.getValue() == 0) 
 					{
-						for (int i=0; i<listaItens.size(); i++) 
-						{
-							if (listaItens.get(i).getProduto().getTitulo().equals(idp.getProduto().getTitulo()))
-							{
-								listaItens.get(i).setQuantidade(listaItens.get(i).getQuantidade()+(Integer) spinner_Quantidade.getValue());
-								listaItens.get(i).setValorUnitario(listaItens.get(i).getProduto().getValor()*listaItens.get(i).getQuantidade());
-								encontrado = true;
-								break;
-							}
-							else
-							{
-								encontrado = false;
-							}
-						}
-						if (!encontrado)
-						{
-							listaItens.add(idp);
-						}
+						JOptionPane.showMessageDialog(null, "Favor informar a quantidade do produto !");
 					}
 					else
 					{
-						listaItens.add(idp);
+						//if()
+						}
+						if(!listaItens.isEmpty())
+						{
+							for (int i=0; i<listaItens.size(); i++) 
+							{
+								if (listaItens.get(i).getProduto().getTitulo().equals(idp.getProduto().getTitulo()))
+								{
+									listaItens.get(i).setQuantidade(listaItens.get(i).getQuantidade()+(Integer) spinner_Quantidade.getValue());
+									listaItens.get(i).setValorUnitario(listaItens.get(i).getProduto().getValor()*listaItens.get(i).getQuantidade());
+									encontrado = true;
+									break;
+								}
+								else
+								{
+									encontrado = false;
+								}
+							}
+							if (!encontrado)
+							{
+								listaItens.add(idp);
+							}
+						}
+						else
+						{
+							listaItens.add(idp);
+						}
+						table.setModel(new RealizaPedidoTableModel(listaItens));
+						
+						valorTotal += produto.getValor() * (Integer) spinner_Quantidade.getValue();
+						jtTotal.setText(Double.toString(valorTotal));
+						spinner_Quantidade.setValue(0);
 					}
-					table.setModel(new RealizaPedidoTableModel(listaItens));
-							
-					valorTotal += produto.getValor() * (Integer) spinner_Quantidade.getValue();
-					jtTotal.setText(Double.toString(valorTotal));
-					spinner_Quantidade.setValue(0);
-				}
+				//}
 				catch(Exception e)
 				{
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
+			
 		});
 
 		JPanel panel = new JPanel();

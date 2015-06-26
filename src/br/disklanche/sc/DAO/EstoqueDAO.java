@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javafx.scene.control.Spinner;
+
 import javax.swing.JOptionPane;
 
 import br.disklanche.sc.Jdbc.ConnectionFactory;
@@ -31,6 +33,23 @@ public class EstoqueDAO {
 		return instance;
 	}
 
+	public void checarEstoque(int id)
+	{
+		String query = "select estoqueatual from estoque where produto = ?";
+		try
+		{
+		PreparedStatement stm = con.prepareStatement(query);
+		stm.setInt(1, id);
+		ResultSet res = stm.executeQuery(query);
+		
+		Estoque estoque = new Estoque();
+		estoque.setEstoqueAtual(res.getInt("estoqueAtual"));
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Erro ao " + e.getMessage());
+		}
+	}
 	public ArrayList<Estoque> listarEstoque(int id) 
 	{
 		String query = "Select * from estoque  where produto = ?";
