@@ -5,7 +5,7 @@ public class ClienteException extends Exception{
 	private String mensagem;
 	
 	public ClienteException(String String){
-		this.mensagem = "Produto já CADASTRADO!";
+		this.mensagem = "Cliente já "+ String ;
 	}
 
 	public String getMessage(){

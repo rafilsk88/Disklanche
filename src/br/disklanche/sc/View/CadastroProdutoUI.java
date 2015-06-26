@@ -19,8 +19,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 
+
+
 import br.disklanche.sc.Controller.CategoriaController;
 import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Exception.CampoObrigatorioException;
+import br.disklanche.sc.Exception.ClienteException;
 import br.disklanche.sc.Model.Categoria;
 import br.disklanche.sc.Model.Produto;
 import br.disklanche.sc.Util.ConsultaProdutoTableModel;
@@ -87,6 +91,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 		JLabel lblNome = new JLabel("Nome :");
 		JLabel lblCategoria = new JLabel("Categoria :");
 		JLabel lblValor = new JLabel("Valor :");
+		jtValor = new JTextField();
 		
 		jtNome = new JTextField();
 		jtNome.setColumns(10);
@@ -94,7 +99,6 @@ public class CadastroProdutoUI extends JInternalFrame {
 		comboBoxCategoria = new JComboBox();
 		comboBoxCategoria.setModel(modelCategoria);
 		
-		jtValor = new JTextField();
 
 		/*
 		 * Criando o botão Salvar e adicionando uma ação. 
@@ -123,7 +127,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 					} 
 					catch (Exception e) 
 					{
-						JOptionPane.showMessageDialog(null,"Erro ao editar o produto" + e.getMessage());
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
 					
 				} 
@@ -137,7 +141,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 					produto.setTitulo(jtNome.getText());
 					produto.setCategoria((Categoria) comboBoxCategoria.getSelectedItem());
 					produto.setStatus(produto.getStatus().ATIVO);
-					produto.setValor(Double.parseDouble(jtValor.getText()));
+					//produto.setValor(Double.parseDouble(jtValor.getText()));
 					
 					ProdutoController produtoController = new ProdutoController();
 					try
@@ -148,15 +152,27 @@ public class CadastroProdutoUI extends JInternalFrame {
 					}
 					catch(Exception e)
 					{
-						JOptionPane.showMessageDialog(null,"Erro ao salvar o produto! \n" + e.getMessage());
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
 				}	
 			}
 		});
+		
+		/*
+		 * Verifica se o Objeto produto está nulo.
+		 */
+		if (produto != null) 
+		{
+			jtNome.setText(produto.getTitulo());
+			jtValor.setText(produto.getValor().toString());
+			comboBoxCategoria.setSelectedItem(produto.getCategoria().getDescricao());
+		}
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnCancelar.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				dispose();
 			}
 		});
@@ -211,14 +227,5 @@ public class CadastroProdutoUI extends JInternalFrame {
 					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
-		/*
-		 * Verifica se o Objeto produto está nulo.
-		 */
-		if (produto != null) 
-		{
-			jtNome.setText(produto.getTitulo());
-			jtValor.setText(produto.getValor().toString());
-			comboBoxCategoria.setSelectedItem(produto.getCategoria().getDescricao());
-		}
 	}
 }

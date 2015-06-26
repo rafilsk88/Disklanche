@@ -11,7 +11,8 @@ import br.disklanche.sc.Model.Cliente;
 public class ClienteController {
 
 	public void salvarCliente(Cliente cliente) throws NullPointerException,
-			ParseException, Exception {
+			ParseException, Exception 
+	{
 		validaDados(cliente);
 		ClienteDAO dao = new ClienteDAO();
 		if (cliente.getId() != 0) {
@@ -19,6 +20,21 @@ public class ClienteController {
 		} else {
 			dao.salvarCliente(cliente);
 		}
+	}
+	
+	public void validaDados(Cliente cliente) throws CampoObrigatorioException,
+	NullPointerException, Exception
+	{
+		if (cliente.getNome().isEmpty() || cliente.getNome().equals(""))
+			throw new CampoObrigatorioException("Nome");
+		if (cliente.getCpf().isEmpty())
+			throw new CampoObrigatorioException("CPF");
+		if (cliente.getTelefone().isEmpty())
+			throw new CampoObrigatorioException("Telefone");
+		if (cliente.getTelefone() == null)
+			throw new CampoObrigatorioException("Telefone");
+		if (cliente.getCpf() != null && cliente.getCpf().length() < 11)
+			throw new Exception("CPF inválido");
 	}
 
 	public Cliente obterCliente(int id) {
@@ -41,17 +57,4 @@ public class ClienteController {
 		dao.excluirCliente(id);
 	}
 
-	public void validaDados(Cliente cliente) throws CampoObrigatorioException,
-			NullPointerException, Exception {
-		if (cliente.getCpf().isEmpty())
-			throw new CampoObrigatorioException("CPF");
-		if (cliente.getTelefone().isEmpty())
-			throw new CampoObrigatorioException("Telefone");
-		if (cliente.getNome().isEmpty() || cliente.getNome().equals(""))
-			throw new CampoObrigatorioException("Nome");
-		if (cliente.getTelefone() == null)
-			throw new CampoObrigatorioException("Telefone");
-		if (cliente.getCpf() != null && cliente.getCpf().length() < 11)
-			throw new Exception("CPF inválido");
-	}
 }

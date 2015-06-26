@@ -98,7 +98,7 @@ public class CadastroClienteUI extends JInternalFrame {
 						ConsultaClienteUI.obterInstancia().table.setModel(new ClienteTableModel(new ClienteController().listarClientes()));
 						dispose();
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage());
+						JOptionPane.showMessageDialog(null,"Erro ao editar o produto" + e1.getMessage());
 					}
 				} else {
 					// Salvar o cliente
