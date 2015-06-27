@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javafx.scene.control.Spinner;
+//import javafx.scene.control.Spinner;
 
 import javax.swing.JOptionPane;
 
@@ -251,4 +251,24 @@ public class EstoqueDAO {
 		}
 	}
 	
+	public void quantidadeDoProdutoNoEstoque(Produto produto) {
+			String select = "select estoqueAtual from estoque where produto = ?";
+			PreparedStatement stm;
+			try {
+				stm = con.prepareStatement(select);
+				stm.setInt(1, produto.getId());
+				ResultSet res = stm.executeQuery();
+				stm.execute();
+				con.commit();
+			} catch (SQLException e) {
+				try {
+					con.rollback();
+					System.out.println("[ Erro ao salvar verificar estoque do produto] : "
+							+ e.getMessage());
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		
 }

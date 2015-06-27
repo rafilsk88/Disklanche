@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import br.disklanche.sc.DAO.EstoqueDAO;
 import br.disklanche.sc.Model.Estoque;
 import br.disklanche.sc.Model.ItensDoPedido;
+import br.disklanche.sc.Model.Produto;
 
 
 
@@ -33,6 +34,10 @@ public class AtualizaEstoqueController {
 			EstoqueDAO.getInstance().Atualizar2(listaItens);
 		}
 	
+	public Object quantidadeDoProdutoNoEstoque(Produto produto){
+		EstoqueDAO.getInstance().quantidadeDoProdutoNoEstoque(produto);
+		return quantidadeDoProdutoNoEstoque(produto);
+	}
 
 	public void Atualizar(Estoque e1){
 		EstoqueDAO.getInstance().inserirEstoque(e1);

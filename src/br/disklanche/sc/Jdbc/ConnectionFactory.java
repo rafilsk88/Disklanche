@@ -11,7 +11,7 @@ public class ConnectionFactory {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost/DiscLancheDB", "root", "1234");
+					"jdbc:mysql://localhost/DiscLancheDB", "root", "");
 			con.setAutoCommit(false);
 			return con;
 		} catch (ClassNotFoundException e) {
