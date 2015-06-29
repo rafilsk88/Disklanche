@@ -137,7 +137,7 @@ public class CadastroProdutoUI extends JInternalFrame {
 					produto.setTitulo(jtNome.getText());
 					produto.setCategoria((Categoria) comboBoxCategoria.getSelectedItem());
 					produto.setStatus(produto.getStatus().ATIVO);
-					//produto.setValor(Double.parseDouble(jtValor.getText()));
+					produto.setValor(Double.parseDouble(jtValor.getText()));
 					
 					ProdutoController produtoController = new ProdutoController();
 					try

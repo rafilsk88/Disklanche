@@ -8,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 
 import br.disklanche.sc.Controller.RealizarPedidoController;
 import br.disklanche.sc.Model.Produto;
+import br.disklanche.sc.Model.RealizarPedido;
 
 public class RelatorioVendasTableModel extends AbstractTableModel {
 	
@@ -22,10 +23,10 @@ public class RelatorioVendasTableModel extends AbstractTableModel {
 	private Date dataInicio;
 	private Date dataFim;
 
-	private List<Produto> valores;
+	private List<RealizarPedido> valores;
 
-	public RelatorioVendasTableModel(ArrayList<Produto> arrayList, Date dataInicio, Date dataFim) {
-		this.valores = new ArrayList<Produto>(arrayList);
+	public RelatorioVendasTableModel(ArrayList<RealizarPedido> arrayList, Date dataInicio, Date dataFim) {
+		this.valores = new ArrayList<RealizarPedido>(arrayList);
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 	}
@@ -47,11 +48,11 @@ public class RelatorioVendasTableModel extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int row, int column) {		
-		Produto produto = valores.get(row);
-		if (column == COL_NOME_PRODUTO) return produto.getTitulo();
-		if (column == COL_QUANTIDADE_VENDIDA) return new RealizarPedidoController().quantidadeProdutosVendidosPorPeriodo(produto.getId(), dataInicio, dataFim);
-		if (column == COL_VALOR_UNITARIO) return produto.getValor();
-		if (column == COL_VALOR_TOTAL) return (new RealizarPedidoController().quantidadeProdutosVendidosPorPeriodo(produto.getId(), dataInicio, dataFim) * produto.getValor());
+		RealizarPedido pedido = valores.get(row);
+		if (column == COL_NOME_PRODUTO) return pedido.getProduto().getTitulo();
+		if (column == COL_QUANTIDADE_VENDIDA) return new RealizarPedidoController().quantidadeProdutosVendidosPorPeriodo(pedido.getProduto().getId(), dataInicio, dataFim);
+		if (column == COL_VALOR_UNITARIO) return pedido.getProduto().getValor();
+		if (column == COL_VALOR_TOTAL) return (new RealizarPedidoController().quantidadeProdutosVendidosPorPeriodo(pedido.getProduto().getId(), dataInicio, dataFim) * pedido.getProduto().getValor());
 		return ""; 
 	}
 
@@ -63,7 +64,7 @@ public class RelatorioVendasTableModel extends AbstractTableModel {
 		return false;
 	}
 	
-	public Produto get(int row) {
+	public RealizarPedido get(int row) {
 		return valores.get(row);
 	}
 }

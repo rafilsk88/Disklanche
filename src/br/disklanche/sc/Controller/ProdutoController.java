@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import br.disklanche.sc.DAO.ProdutoDAO;
 import br.disklanche.sc.Exception.CampoObrigatorioException;
 import br.disklanche.sc.Exception.ClienteException;
+import br.disklanche.sc.Exception.ProdutoException;
 import br.disklanche.sc.Model.Produto;
 import br.disklanche.sc.View.CadastroCategoriaUI;
 
@@ -44,12 +45,12 @@ public class ProdutoController {
 			throw new CampoObrigatorioException("Categoria");
 	}
 		
-	public void validaExistenciaProduto(Produto produto) throws ClienteException, NullPointerException, NumberFormatException
+	public void validaExistenciaProduto(Produto produto) throws ProdutoException, NullPointerException, NumberFormatException
 	{
 		for (int i = 0; i < listarProduto().size(); i++)
 		{
 			if (listarProduto().get(i).getTitulo().equalsIgnoreCase(produto.getTitulo())) 
-				throw new ClienteException("CADASTRADO");
+				throw new ProdutoException("cadastrado");
 		}
 	}
 

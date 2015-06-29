@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import br.disklanche.sc.DAO.PedidoDAO;
 import br.disklanche.sc.Exception.CampoObrigatorioException;
 import br.disklanche.sc.Model.Cliente;
@@ -90,8 +92,13 @@ public class RealizarPedidoController {
 		if (!DataUtil.mesmoMesAtual(dataFim)) {
 			dataFinal = DataUtil.criarDataNoUltimoDiaMesNoUltimoSegundo(dataFim);
 		}
-		return dao.quantidadeProdutosVendidosPorPeriodo(id, dataInicial, dataFinal);
-	}
+		if(dao.quantidadeProdutosVendidosPorPeriodo(id, dataInicial, dataFinal) == 0){
+			JOptionPane.showMessageDialog(null, "Nenhum dado encontrado nesse período!");
+		} else {	
+			return dao.quantidadeProdutosVendidosPorPeriodo(id, dataInicial, dataFinal);
+		}
+		return id;
+		}
 
 	public int produtoVendidosPorPeriodo(int id, Date dataInicio, Date dataFim){
 		PedidoDAO dao = new PedidoDAO();

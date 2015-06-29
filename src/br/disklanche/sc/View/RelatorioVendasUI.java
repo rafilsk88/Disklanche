@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
 import br.disklanche.sc.Controller.ProdutoController;
+import br.disklanche.sc.Controller.RealizarPedidoController;
+import br.disklanche.sc.DAO.PedidoDAO;
 import br.disklanche.sc.Util.RelatorioVendasTableModel;
 
 	import java.awt.event.ActionListener;
@@ -78,7 +80,7 @@ import java.util.Date;
 						.addContainerGap())
 			);
 			jtRelatorioVendas = new JTable();
-			jtRelatorioVendas.setModel(new RelatorioVendasTableModel(new ProdutoController().listarProduto(), periodoInicial, periodoFinal));
+			jtRelatorioVendas.setModel(new RelatorioVendasTableModel(new RealizarPedidoController().listarPedidos(), periodoInicial, periodoFinal));
 			jtRelatorioVendas.getColumnModel().getColumn(0).setPreferredWidth(200);
 			jtRelatorioVendas.getColumnModel().getColumn(1).setPreferredWidth(100);
 			jtRelatorioVendas.getColumnModel().getColumn(2).setPreferredWidth(100);
