@@ -130,12 +130,12 @@ public class RealizarPedidoUI extends JInternalFrame {
 				idp = new ItensDoPedido(produto, (Integer) spinner_Quantidade.getValue(), (produto.getValor() * (Integer) spinner_Quantidade.getValue()));
 				boolean encontrado= false;
 				
-				/*
-				 * Verificação do inserir na lista de pedido quantidade "0".
-				 */
+				//Tentando verificar se a quantidade de estoque é = ou superior a quantidade tentando ser pedida... Mas não consigo pagar o produto como valor dentro da "quantidadeDoProdutoNoEstoque().
+				/*if(new AtualizaEstoqueController().quantidadeDoProdutoNoEstoque() >= spinner_Quantidade.getValue()){
+					JOptionPane.showMessageDialog(null, "Quantidade do produto no estoque é insuficiente para realizar esse pedido!");
+				}*/
 				
-				
-								
+					
 				try
 				{
 					/*
